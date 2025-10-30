@@ -44,6 +44,6 @@ using (var scope = app.Services.CreateScope())
 
 app.UseRouting();
 app.MapControllers();
-app.UseCors("AllowAll");
+// app.UseCors("AllowAll");
 
 app.Run();

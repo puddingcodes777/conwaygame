@@ -1,0 +1,14 @@
+@ConwayGameOfLife.API_HostAddress = http://localhost:5071
+
+GET {{ConwayGameOfLife.API_HostAddress}}/api/board/upload
+Accept: application/json
+
+###
+  {
+        "liveCells": [
+            {
+            "x": 0,
+            "y": 0
+            }
+        ]
+    }

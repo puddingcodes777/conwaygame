@@ -1,4 +1,4 @@
-# Conway's Game of Full Stack Application
+# Conway's Game of Full Stack Project
 
 A complete implementation of Conway's Game of Life featuring an ASP.NET 8.0 backend API and a React Material-UI frontend.
 

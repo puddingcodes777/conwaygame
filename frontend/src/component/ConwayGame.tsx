@@ -32,147 +32,147 @@ const ConwayGame = () => {
     setMaxStepNum(parseInt(event.target.value))
   }
 
-  // Toggle live cell on click
-  const toggleCell = (x: number, y: number) => {
-    const exists = liveCells.some(c => c.x === x && c.y === y)
-    if (exists) {
-      // Remove cell
-      setLiveCells(liveCells.filter(c => !(c.x === x && c.y === y)))
-    } else {
-      // Add cell
-      setLiveCells([...liveCells, { x: x, y: y }])
-    }
-  }
+  // // Toggle live cell on click
+  // const toggleCell = (x: number, y: number) => {
+  //   const exists = liveCells.some(c => c.x === x && c.y === y)
+  //   if (exists) {
+  //     // Remove cell
+  //     setLiveCells(liveCells.filter(c => !(c.x === x && c.y === y)))
+  //   } else {
+  //     // Add cell
+  //     setLiveCells([...liveCells, { x: x, y: y }])
+  //   }
+  // }
 
-  const uploadBoardState = async () => {
-    try {
-      setActionLoading('create')
-      const data = { liveCells: liveCells }
-      const response = await uploadBoard(data)
-      if (response) {
-        toast.success('Upload Board Successfully')
-        setBoardId(response.boardId)
-      }
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        toast(err.message, { type: 'error' })
-      } else {
-        toast('An unknown error occurred', { type: 'error' })
-      }
-    } finally {
-      setActionLoading('')
-      getBoardList()
-    }
-  }
+  // const uploadBoardState = async () => {
+  //   try {
+  //     setActionLoading('create')
+  //     const data = { liveCells: liveCells }
+  //     const response = await uploadBoard(data)
+  //     if (response) {
+  //       toast.success('Upload Board Successfully')
+  //       setBoardId(response.boardId)
+  //     }
+  //   } catch (err: unknown) {
+  //     if (err instanceof Error) {
+  //       toast(err.message, { type: 'error' })
+  //     } else {
+  //       toast('An unknown error occurred', { type: 'error' })
+  //     }
+  //   } finally {
+  //     setActionLoading('')
+  //     getBoardList()
+  //   }
+  // }
 
-  const getBoardList = async () => {
-    try {
-      setLoading(true)
-      const response = await getAll()
-      if (response) {
-        setBoardList(response)
-      }
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        toast(err.message, { type: 'error' })
-      } else {
-        toast('An unknown error occurred', { type: 'error' })
-      }
-    } finally {
-      setLoading(false)
-    }
-  }
+  // const getBoardList = async () => {
+  //   try {
+  //     setLoading(true)
+  //     const response = await getAll()
+  //     if (response) {
+  //       setBoardList(response)
+  //     }
+  //   } catch (err: unknown) {
+  //     if (err instanceof Error) {
+  //       toast(err.message, { type: 'error' })
+  //     } else {
+  //       toast('An unknown error occurred', { type: 'error' })
+  //     }
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
 
-  const getNextState = async () => {
-    try {
-      setActionLoading('next')
-      if (!boardId) {
-        toast.error('Must upload a new state')
-        return
-      }
-      const response = await getNextBoard(boardId)
-      setLiveCells(response.liveCells)
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        toast(err.message, { type: 'error' })
-      } else {
-        toast('An unknown error occurred', { type: 'error' })
-      }
-    } finally {
-      setActionLoading('')
-    }
-  }
+  // const getNextState = async () => {
+  //   try {
+  //     setActionLoading('next')
+  //     if (!boardId) {
+  //       toast.error('Must upload a new state')
+  //       return
+  //     }
+  //     const response = await getNextBoard(boardId)
+  //     setLiveCells(response.liveCells)
+  //   } catch (err: unknown) {
+  //     if (err instanceof Error) {
+  //       toast(err.message, { type: 'error' })
+  //     } else {
+  //       toast('An unknown error occurred', { type: 'error' })
+  //     }
+  //   } finally {
+  //     setActionLoading('')
+  //   }
+  // }
 
-  const getCurrentState = async (boardId: number) => {
-    try {
-      setLoading(true)
-      const response = await getCurrentBoard(boardId)
-      setLiveCells(response.liveCells)
-      setBoardId(boardId)
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        toast(err.message, { type: 'error' })
-      } else {
-        toast('An unknown error occurred', { type: 'error' })
-      }
-    } finally {
-      setLoading(false)
-    }
-  }
+  // const getCurrentState = async (boardId: number) => {
+  //   try {
+  //     setLoading(true)
+  //     const response = await getCurrentBoard(boardId)
+  //     setLiveCells(response.liveCells)
+  //     setBoardId(boardId)
+  //   } catch (err: unknown) {
+  //     if (err instanceof Error) {
+  //       toast(err.message, { type: 'error' })
+  //     } else {
+  //       toast('An unknown error occurred', { type: 'error' })
+  //     }
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
 
-  const getNextNState = async () => {
-    try {
-      setActionLoading('next n')
-      if (!boardId) {
-        toast.error('Must upload a new state')
-        return
-      }
-      const response = await getNextNBoard(boardId, generationNum)
-      setLiveCells(response.liveCells)
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        toast(err.message, { type: 'error' })
-      } else {
-        toast('An unknown error occurred', { type: 'error' })
-      }
-    } finally {
-      setActionLoading('')
-    }
-  }
+  // const getNextNState = async () => {
+  //   try {
+  //     setActionLoading('next n')
+  //     if (!boardId) {
+  //       toast.error('Must upload a new state')
+  //       return
+  //     }
+  //     const response = await getNextNBoard(boardId, generationNum)
+  //     setLiveCells(response.liveCells)
+  //   } catch (err: unknown) {
+  //     if (err instanceof Error) {
+  //       toast(err.message, { type: 'error' })
+  //     } else {
+  //       toast('An unknown error occurred', { type: 'error' })
+  //     }
+  //   } finally {
+  //     setActionLoading('')
+  //   }
+  // }
 
-  const getFinalState = async () => {
-    try {
-      setActionLoading('final')
-      const data = {
-        liveCells: liveCells,
-        maxStepNum: maxStepNum
-      }
-      const response = await getStable(data)
-      setLiveCells(response.liveCells)
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        toast(err.message, { type: 'error' })
-      } else {
-        toast('An unknown error occurred', { type: 'error' })
-      }
-    } finally {
-      setActionLoading('')
-    }
-  }
+  // const getFinalState = async () => {
+  //   try {
+  //     setActionLoading('final')
+  //     const data = {
+  //       liveCells: liveCells,
+  //       maxStepNum: maxStepNum
+  //     }
+  //     const response = await getStable(data)
+  //     setLiveCells(response.liveCells)
+  //   } catch (err: unknown) {
+  //     if (err instanceof Error) {
+  //       toast(err.message, { type: 'error' })
+  //     } else {
+  //       toast('An unknown error occurred', { type: 'error' })
+  //     }
+  //   } finally {
+  //     setActionLoading('')
+  //   }
+  // }
 
-  const deleteState = async (boardId: number) => {
-    try {
-      const response = await deleteBoard(boardId)
-      if (response) toast.success('Successfully Deleted')
-      getBoardList()
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        toast(err.message, { type: 'error' })
-      } else {
-        toast('An unknown error occurred', { type: 'error' })
-      }
-    }
-  }
+  // const deleteState = async (boardId: number) => {
+  //   try {
+  //     const response = await deleteBoard(boardId)
+  //     if (response) toast.success('Successfully Deleted')
+  //     getBoardList()
+  //   } catch (err: unknown) {
+  //     if (err instanceof Error) {
+  //       toast(err.message, { type: 'error' })
+  //     } else {
+  //       toast('An unknown error occurred', { type: 'error' })
+  //     }
+  //   }
+  // }
 
   const reset = () => {
     setLiveCells([])

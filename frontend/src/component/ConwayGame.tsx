@@ -188,7 +188,7 @@ const ConwayGame = () => {
 
   return (
     <Stack direction={{ md: 'row', xs: 'column' }} sx={{ p: 4 }} gap={5}>
-      <Stack gap={2}>
+      {/* <Stack gap={2}>
         <Typography variant='h5' color='white'>
           Saved Boards
         </Typography>
@@ -326,7 +326,7 @@ const ConwayGame = () => {
             })
           )}
         </Box>
-      </Stack>
+      </Stack> */}
     </Stack>
   )
 }
